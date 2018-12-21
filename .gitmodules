@@ -1,0 +1,3 @@
+[submodule "modules/vim/spf13-vim"]
+	path = modules/vim/spf13-vim
+	url = https://github.com/spf13/spf13-vim.git
