@@ -1,20 +1,21 @@
 #!/bin/bash
 
-set -e -x
-echo "Installing module: vim"
-MY_DIR="$PWD/$(dirname $0)"
+set -e
+[ -n "$DEBUG" ] && set -x
 
-__backup $HOME/.vimrc
-__backup $HOME/.vimrc.bundles
-__backup $HOME/.vimrc.before
+MODULE_DIR="$PWD/$(dirname $0)"
+MODULE_NAME="$(basename $MODULE_DIR)"
+echo "Installing module $MODULE_NAME"
+
+# Begin
 
 # spf13
-ln -s $MY_DIR/spf13-vim/.vimrc $HOME/.vimrc
-ln -s $MY_DIR/spf13-vim/.vimrc.bundles $HOME/.vimrc.bundles
-ln -s $MY_DIR/spf13-vim/.vimrc.before $HOME/.vimrc.before
+__symlink $MODULE_DIR/spf13-vim/.vimrc $HOME/.vimrc
+__symlink $MODULE_DIR/spf13-vim/.vimrc.bundles $HOME/.vimrc.bundles
+__symlink $MODULE_DIR/spf13-vim/.vimrc.before $HOME/.vimrc.before
 
 # static files
-$MY_DIR/../../utils/create-symlinks.sh "$MY_DIR/static"
+__symlink_all "$MODULE_DIR/static"
 
 vim \
     "+set nomore" \
@@ -22,4 +23,6 @@ vim \
     "+BundleClean" \
     "+qall"
 
-echo "Completed module vim"
+# End
+
+echo "Completed module $MODULE_NAME"
