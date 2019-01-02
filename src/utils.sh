@@ -1,16 +1,23 @@
 __backup() {
-    if [ -f "$1" -o -L "$1" ]; then
-        target=$(echo "$1" | sed "s|^$HOME||")
+    target="$1"
+    if [ -f "$target" -o -L "$target" ]; then
+        if [ "$FORCE_OVERRIDE" != "1" ]; then
+            echo "WARNING: $target already exists"
+            echo "Press ENTER to continue or CTRL-C to terminate"
+            echo "export FORCE_OVERRIDE=1 if you don't want this prompt"
+            read
+        fi
         echo "Creating backup of $target"
         if [ ! -d "$BACKUP_DIR" ]; then
             echo "ERROR: BACKUP_DIR is not set"
             exit 1
         fi
-        destination="$BACKUP_DIR$target"
+        relative_target=$(echo "$target" | sed "s|^$HOME||")
+        destination="${BACKUP_DIR}${relative_target}"
         destination_dir="$(dirname $destination)"
         mkdir -p $destination_dir &>/dev/null
-        echo "Backup: $1 to $destination"
-        mv "$1" "$destination"
+        echo "Backup: $target to $destination"
+        mv "$target" "$destination"
     fi
 }
 export -f __backup
