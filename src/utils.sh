@@ -26,8 +26,13 @@ __symlink() {
     src="$1"
     dst="$2"
 
-    __backup "$dst"
-    ln -s "$src" "$dst"
+    current_link=$(readlink $dst || true)
+    if [ "$current_link" != "$src" ]; then
+        __backup "$dst"
+        ln -s "$src" "$dst"
+    else
+        echo "Symlink already correct: $dst -> $src"
+    fi
 }
 export -f __symlink
 
