@@ -25,10 +25,20 @@ echo "
 
 read
 
-source ./src/utils.sh
+## load libraries
+for lib in $(find lib -type f -name \*.sh); do
+    echo "Loading library $lib"
+    source $lib
+done
 
+echo "Finished loading all libraries
+
+
+"
+
+echo "Installing modules:"
 ## install all modules
-for i in $(find modules -name install.sh); do
+for i in $(find modules -name install.sh | sort); do
     $i
 done
 

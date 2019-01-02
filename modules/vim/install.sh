@@ -14,6 +14,10 @@ __symlink $MODULE_DIR/spf13-vim/.vimrc $HOME/.vimrc
 __symlink $MODULE_DIR/spf13-vim/.vimrc.bundles $HOME/.vimrc.bundles
 __symlink $MODULE_DIR/spf13-vim/.vimrc.before $HOME/.vimrc.before
 
+# vundle
+__symlink $MODULE_DIR/vundle $HOME/.vim/bundle/vundle -d
+
+
 # static files
 __symlink_all "$MODULE_DIR/static"
 
