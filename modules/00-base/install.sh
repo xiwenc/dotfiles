@@ -11,6 +11,8 @@ echo "Installing module $MODULE_NAME"
 
 __ensure_package git
 __ensure_package curl
+__ensure_package python@2 /usr/local/bin/python
+__ensure_package python@3 /usr/local/bin/python3
 
 # static files
 # __symlink_all "$MODULE_DIR/static"
