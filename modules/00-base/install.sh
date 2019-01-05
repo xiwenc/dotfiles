@@ -11,8 +11,15 @@ echo "Installing module $MODULE_NAME"
 
 __ensure_package git
 __ensure_package curl
-__ensure_package python@2 /usr/local/bin/python
-__ensure_package python@3 /usr/local/bin/python3
+
+os=$(uname -s)
+if [ "$os" == "Darwin" ]; then
+    __ensure_package python@2 /usr/local/bin/python
+    __ensure_package python@3 /usr/local/bin/python3
+else
+    __ensure_package python
+    __ensure_package python3
+fi
 
 # static files
 # __symlink_all "$MODULE_DIR/static"

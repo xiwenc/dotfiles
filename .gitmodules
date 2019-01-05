@@ -4,3 +4,6 @@
 [submodule "modules/vim/vundle"]
 	path = modules/vim/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "modules/zsh/zim"]
+	path = modules/zsh/zim
+	url = https://github.com/zimfw/zimfw.git

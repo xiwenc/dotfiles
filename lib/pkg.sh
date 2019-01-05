@@ -16,7 +16,7 @@ __ensure_package() {
     echo "INFO: installing $package_name"
     if [ "$os" == "Darwin" ]; then
         brew install --force $package_name
-    elif [ "$os" == "Ubuntu" ]; then
+    elif [ "$os" == "Linux" ]; then
         sudo apt install -y $package_name
     else
         echo "ERROR: Unsupported OS/Platform: $os"
