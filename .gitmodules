@@ -7,3 +7,6 @@
 [submodule "modules/zsh/zim"]
 	path = modules/zsh/zim
 	url = https://github.com/zimfw/zimfw.git
+[submodule "modules/tmux/gpakosz-tmux"]
+	path = modules/tmux/gpakosz-tmux
+	url = https://github.com/gpakosz/.tmux.git
